@@ -60,7 +60,7 @@
     box-shadow:0 6px 14px rgba(0,0,0,.25);
   }
   .today-hw .hw-label{display:block; font-size:1.1rem; margin-bottom:.3rem;}
-  .today-hw .hw-text{display:block; font-size:1.3rem; font-weight:800;}
+  .today-hw .hw-text{display:block; font-size:1.3rem; font-weight:800; margin-top:.25rem;}
 
   /* ---------- Hero ---------- */
   .hero{
@@ -176,6 +176,22 @@
   .fo-btn.wrong{background:var(--red); border-color:var(--red-dark); color:#fff;}
   .fo-btn:disabled{opacity:.55; cursor:default;}
 
+  /* ---------- Vocabulary list ---------- */
+  .vocab-list{list-style:none; counter-reset:vocab; margin:0; padding:0;}
+  .vocab-list li{
+    counter-increment:vocab; background:var(--white); border:2px solid var(--paper-dark);
+    border-radius:12px; padding:.9rem 1.2rem; margin-bottom:.7rem;
+    display:flex; align-items:baseline; gap:.7rem; flex-wrap:wrap;
+  }
+  .vocab-list li::before{
+    content:counter(vocab)".";
+    font-family:'Fraunces',serif; font-weight:900; color:var(--yellow-dark); font-size:1.3rem;
+    flex:0 0 auto;
+  }
+  .vocab-list .en{font-family:'Fraunces',serif; font-weight:700; color:var(--purple); font-size:1.3rem;}
+  .vocab-list .es{color:var(--green-dark); font-weight:800; font-size:1.15rem;}
+  .vocab-list .def{flex-basis:100%; color:#3A3050; font-size:1.05rem;}
+
   /* ---------- Writable "whiteboard" pads ---------- */
   .writepad{
     position:relative; border:2px solid var(--purple); border-radius:12px;
@@ -211,7 +227,9 @@
   <div class="today-date">Tuesday, September 8, 2026</div>
   <div class="today-hw">
     <span class="hw-label">📚 Homework — copy this into your tarea notebook:</span>
-    <span class="hw-text">Book page 40 (Working with Sounds). Use the Lesson 3 vocabulary list on page 39 to help you. Due Wednesday, September 9.</span>
+    <span class="hw-text">1. Book page 40 (Working with Sounds). Use the Lesson 3 vocabulary list on page 39 to help you.</span>
+    <span class="hw-text">2. Make sure you (or your parents) already have access to Google Classroom.</span>
+    <span class="hw-text" style="font-weight:700;">Due Wednesday, September 9.</span>
   </div>
 </div>
 
@@ -224,6 +242,7 @@
 
 <nav class="tabs">
   <div class="tabs-scroll">
+    <a class="tab-btn" href="#p39">Page 39</a>
     <a class="tab-btn" href="#p35">Page 35</a>
     <a class="tab-btn" href="#p36">Page 36</a>
     <a class="tab-btn" href="#p37">Page 37</a>
@@ -233,6 +252,18 @@
 </nav>
 
 <main>
+
+  <!-- ============================================================ PAGE 39 ============================================================ -->
+  <section id="p39" class="panel-content">
+    <div class="page-banner"><span class="num">39</span><span class="title">Lesson 3 Vocabulary</span></div>
+
+    <div class="card">
+      <span class="stamp">Vocabulary List</span>
+      <h2>New Words — Lesson 3</h2>
+      <div class="instr">Copy this list into your notebook. Review it before doing page 40 — you'll need it!</div>
+      <ol class="vocab-list" id="vocabList39"></ol>
+    </div>
+  </section>
 
   <!-- ============================================================ PAGE 35 ============================================================ -->
   <section id="p35" class="panel-content">
@@ -494,6 +525,31 @@ function setupWritePad(pad){
 }
 document.addEventListener('DOMContentLoaded', ()=>{
   $all('.writepad').forEach(setupWritePad);
+});
+
+/* ---------------- DATA: Lesson 3 vocabulary (page 39) ---------------- */
+const VOCAB_L3 = [
+  {word:"wool", es:"lana", def:"The soft, thick hair of sheep, used to make warm clothing.", ex:"The soft wool sweater keeps me warm during the winter."},
+  {word:"calf", es:"becerro / ternero", def:"A baby cow.", ex:"The little calf mooed loudly when it saw the farmer's truck."},
+  {word:"herd", es:"manada / arrear", def:"A large group of animals that live or feed together; or, to gather animals and move them together.", ex:"The farmers herd the cows into the barn every evening."},
+  {word:"waterproof", es:"impermeable", def:"Something that does not let water pass through, so it keeps you dry.", ex:"I wore my waterproof jacket to stay dry during the rain."},
+  {word:"trained", es:"entrenado / adiestrado", def:"Taught to do something through practice.", ex:"My cousin trained her cat to open and close the kitty door."},
+  {word:"hiding", es:"escondiéndose", def:"Staying out of sight so no one can find you.", ex:"The children were hiding behind the curtains, playing a fun game."},
+  {word:"shaggy", es:"peludo / desgreñado", def:"Having long, messy, or rough hair or fur.", ex:"The shaggy dog ran through the park with its messy fur."},
+  {word:"shepherd", es:"pastor (de ovejas)", def:"A person whose job is to take care of sheep.", ex:"The shepherd called out to his dogs to round up the sheep."},
+  {word:"tiny", es:"diminuto / muy pequeño", def:"Very, very small.", ex:"The tiny ant carried food back to its small underground home."},
+  {word:"loyal", es:"leal", def:"Always faithful and supportive to someone.", ex:"He is loyal to his team, always helping them when needed."},
+  {word:"unusual", es:"inusual / poco común", def:"Not common; different from what is normal.", ex:"We saw an unusual cloud shaped like a dinosaur in the sky."},
+  {word:"gentle", es:"gentil / suave", def:"Kind, soft, and careful; not rough.", ex:"You should be gentle when petting an animal."},
+  {word:"wolves", es:"lobos", def:"Wild animals related to dogs that live and hunt together in groups (plural of 'wolf').", ex:"Last night I heard wolves howling at the moon."},
+  {word:"fierce", es:"feroz", def:"Very aggressive, wild, or intense.", ex:"The fierce tiger sprinted across the jungle, looking for food."}
+];
+
+const vocabList39 = document.getElementById('vocabList39');
+VOCAB_L3.forEach(v=>{
+  const li=document.createElement('li');
+  li.innerHTML = `<span class="en">${v.word}</span><span class="es">— ${v.es}</span><span class="def">${v.def}</span>`;
+  vocabList39.appendChild(li);
 });
 
 /* ---------------- DATA ---------------- */
