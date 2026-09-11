@@ -45,39 +45,41 @@
   }
   .instr-bar b{color:var(--yellow);}
 
-  .board{
-    max-width:1500px; margin:0 auto; padding:2.2rem clamp(1rem,3vw,2.5rem) 3.5rem;
-    display:grid; grid-template-columns:repeat(auto-fit,minmax(310px,1fr)); gap:2.6rem;
-  }
 
-  .collage-card{
-    position:relative; background:var(--white); border-radius:10px;
-    box-shadow:0 10px 22px rgba(0,0,0,.22); padding:1.1rem 1.1rem 1.4rem;
+  /* ---------- Reflection question card ---------- */
+  .qcard{
+    max-width:1100px; margin:0 auto 2.5rem; background:var(--white); border-radius:16px;
+    padding:clamp(1.1rem,2.2vw,1.8rem); box-shadow:0 10px 22px rgba(42,32,80,.14);
   }
-  .collage-card::before{
-    content:""; position:absolute; top:-14px; left:50%; transform:translateX(-50%) rotate(-4deg);
-    width:70px; height:26px; background:rgba(245,208,22,.85); border:1px solid rgba(0,0,0,.05);
+  .qcard h2{font-size:clamp(1.5rem,1.3vw+1.1rem,2rem); margin-bottom:.6rem;}
+  .qcard .instr{
+    background:var(--green); color:var(--white); border-radius:12px;
+    padding:.8rem 1.1rem; font-weight:700; margin-bottom:1.1rem; font-size:1.1rem;
   }
-  .photo-box{
-    width:100%; aspect-ratio:4/3; border-radius:6px; display:flex; align-items:center; justify-content:center;
-    font-size:5.2rem; margin-bottom:.7rem;
+  .qcard .lead{font-weight:800; color:var(--purple); font-size:1.2rem; margin-bottom:.4rem;}
+  .writepad{
+    position:relative; border:2px solid var(--purple); border-radius:12px;
+    background:repeating-linear-gradient(#fff, #fff 44px, #EDEAF7 45px);
+    overflow:hidden; touch-action:none; margin-bottom:.5rem; height:150px;
   }
-  .flag-tag{
-    display:inline-block; background:var(--purple); color:var(--white); font-weight:800;
-    font-size:.85rem; padding:.25rem .7rem; border-radius:999px; margin-bottom:.4rem;
+  .writepad canvas{display:block; width:100%; height:100%; cursor:crosshair; touch-action:none;}
+  .writepad .clear-btn{
+    position:absolute; top:8px; right:8px; z-index:2;
+    background:var(--white); border:2px solid var(--purple-line); color:var(--purple);
+    font-weight:800; font-size:.8rem; padding:.3rem .7rem; border-radius:999px; cursor:pointer;
+    box-shadow:0 2px 6px rgba(0,0,0,.15);
   }
-  .breed-name{font-family:'Fraunces',serif; font-weight:800; color:var(--purple); font-size:1.35rem; margin-bottom:.3rem;}
-
-  .stickers{position:relative; min-height:150px; margin-top:.8rem;}
-  .sticker{
-    display:inline-block; font-family:'Caveat',cursive; font-weight:700; font-size:1.35rem;
-    padding:.45rem .8rem; border-radius:6px; margin:.35rem; box-shadow:0 4px 8px rgba(0,0,0,.18);
-    line-height:1.2;
+  .btn{
+    display:inline-block; border:none; cursor:pointer; font-weight:800;
+    padding:.7rem 1.4rem; border-radius:999px; font-size:1.1rem;
+    background:#2C6E8F; color:var(--white); box-shadow:0 3px 0 #1F526B;
   }
-  .sticker.c1{background:#FBD9EC; color:var(--pink); transform:rotate(-3deg);}
-  .sticker.c2{background:#FBE3C2; color:var(--orange); transform:rotate(2deg);}
-  .sticker.c3{background:#D9F0C8; color:var(--green-dark); transform:rotate(-2deg);}
-  .sticker.c4{background:#D6E8F5; color:var(--blue); transform:rotate(3deg);}
+  .reveal-content{
+    display:none; background:#F3F9FB; border-left:6px solid #2C6E8F;
+    padding:.9rem 1.1rem; border-radius:8px; margin-top:.6rem; font-weight:700; color:#1F526B; font-size:1.05rem;
+  }
+  .reveal-content.show{display:block;}
+  .possible-tag{display:block; font-style:italic; font-weight:700; opacity:.85; font-size:.88rem; margin-bottom:.4rem;}
 
   footer{
     text-align:center; color:var(--purple); background:var(--lime-soft); font-size:1.05rem;
@@ -93,48 +95,93 @@
   <p>Colegio Tlahtoani GDL · 4to grado · Lead Book 1, Page 54</p>
 </header>
 
-<div class="instr-bar">Look at the collage below, then use it to fill in <b>your book's chart on page 54</b> — write one detail in each column for every animal!</div>
+<div class="instr-bar">Read the passage below, then use it to fill in <b>your book's chart on page 54</b> — write one detail in each column for every animal!</div>
 
-<div class="board" id="board"></div>
+<div class="qcard" style="margin-top:2.2rem;">
+  <h2>Reading: Animals of the UK</h2>
+  <p class="lead" style="font-weight:400; font-size:1.15rem; line-height:1.85;">
+    The <b>Irish Wolfhound</b> comes from Ireland. It is the tallest dog breed. Its height is about 90 centimeters, and its weight is about 60 kilograms. People often call it a "gentle giant."
+  </p>
+  <p class="lead" style="font-weight:400; font-size:1.15rem; line-height:1.85;">
+    The <b>Old English Sheepdog</b> comes from England. Its weight is between 29 and 45 kilograms. It has a shaggy coat. This coat needs to be brushed every day.
+  </p>
+  <p class="lead" style="font-weight:400; font-size:1.15rem; line-height:1.85;">
+    The <b>Shetland Pony</b> comes from the Shetland Islands, Scotland. Its height is between 66 and 177 centimeters. It is small, but it can pull twice its own weight.
+  </p>
+  <p class="lead" style="font-weight:400; font-size:1.15rem; line-height:1.85;">
+    The <b>Manx Cat</b> comes from the Isle of Man. Its size is not stated. It has no tail, or a very short tail. When it moves, it looks like it is hopping.
+  </p>
+  <p class="lead" style="font-weight:400; font-size:1.15rem; line-height:1.85;">
+    The <b>Highland Wildcat</b> comes from Scotland. It is bigger than a house cat. It has a bushy, striped tail and fur like a tiger's. It does not meow; it hisses, growls, or roars softly.
+  </p>
+  <p class="lead" style="font-weight:400; font-size:1.15rem; line-height:1.85;">
+    The <b>Jacob Sheep</b>'s place of origin is not stated. Its size is not stated. It has a spotted coat. It can have two, four, or six horns.
+  </p>
+  <p class="lead" style="font-weight:400; font-size:1.15rem; line-height:1.85; margin-bottom:0;">
+    The <b>Highland Cow</b> comes from Scotland. Its size is not stated. It has shaggy fur and long horns. Its calves are very fluffy.
+  </p>
+</div>
+
+
+<div class="qcard">
+  <h2>Based on the Chart</h2>
+  <div class="instr">Answer in complete sentences. Come up to the board and write your answer!</div>
+
+  <div style="margin-bottom:1.4rem;">
+    <p class="lead">1. Which animal do you think has the most interesting physical features? Why?</p>
+    <div class="writepad"><canvas></canvas><button type="button" class="clear-btn">Clear</button></div>
+    <button class="btn" type="button" onclick="toggleReveal(this)">Show possible answer</button>
+    <div class="reveal-content"><span class="possible-tag">Possible answer:</span>The Jacob Sheep, because having six horns is really cool.</div>
+  </div>
+
+  <div>
+    <p class="lead">2. If you had to choose one of these animals to learn more about, which one would it be and why?</p>
+    <div class="writepad"><canvas></canvas><button type="button" class="clear-btn">Clear</button></div>
+    <button class="btn" type="button" onclick="toggleReveal(this)">Show possible answer</button>
+    <div class="reveal-content"><span class="possible-tag">Possible answer:</span>The Highland Wildcat, because I want to know more about how it lives in the wild.</div>
+  </div>
+</div>
 
 <footer>Colegio Tlahtoani GDL · 4to grado · Classroom support material · Based on Amco Lead Book 1, Page 54</footer>
 
 <script>
-const ANIMALS = [
-  {emoji:"🐕", bg:"#F3E9D6", flag:"🇮🇪 Ireland", name:"Irish Wolfhound",
-   notes:["Height: 90 cm · Weight: 60 kg","Tallest dog breed","Known as \u201cgentle giants\u201d"]},
-  {emoji:"🐕‍🦺", bg:"#EAF1E2", flag:"🏴\u200d☠️ England", name:"Old English Sheepdog",
-   notes:["Weight: 29-45 kg","Shaggy coat","Coat needs daily brushing"]},
-  {emoji:"🐴", bg:"#F0E6D8", flag:"🏴\u200d☠️ Shetland Islands, Scotland", name:"Shetland Pony",
-   notes:["Height: 66-177 cm","Small size but strong","Can pull twice their own weight"]},
-  {emoji:"🐈", bg:"#E9EEF5", flag:"🇮🇲 Isle of Man", name:"Manx Cat",
-   notes:["Size: It doesn't say","No tail or short tail","Looks like it's hopping when it moves"]},
-  {emoji:"🐈‍⬛", bg:"#EDE6F1", flag:"🏴\u200d☠️ Scotland", name:"Highland Wildcat",
-   notes:["Bigger than house cats","Bushy, striped tail; tiger-like fur","Doesn't meow \u2014 hisses, growls, roars softly"]},
-  {emoji:"🐑", bg:"#F5EEDD", flag:"❓ It doesn't say", name:"Jacob Sheep",
-   notes:["Size: It doesn't say","Spotted coat; multiple horns","Can have 2, 4, or 6 horns"]},
-  {emoji:"🐄", bg:"#EDEBD9", flag:"🏴\u200d☠️ Scotland", name:"Highland Cow",
-   notes:["Size: It doesn't say","Shaggy fur; long horns","Calves are super fluffy"]}
-];
+function toggleReveal(btn){
+  const box = btn.nextElementSibling;
+  box.classList.toggle('show');
+}
 
-const stickerClasses = ["c1","c2","c3","c4"];
-const board = document.getElementById('board');
-
-ANIMALS.forEach((a, idx)=>{
-  const card = document.createElement('div');
-  card.className = 'collage-card';
-  card.style.transform = `rotate(${(idx % 2 === 0 ? -1 : 1) * (1 + (idx % 3))}deg)`;
-
-  const stickersHtml = a.notes.map((n,i)=>`<span class="sticker ${stickerClasses[i % stickerClasses.length]}">${n}</span>`).join('');
-
-  card.innerHTML = `
-    <div class="photo-box" style="background:${a.bg}">${a.emoji}</div>
-    <span class="flag-tag">${a.flag}</span>
-    <div class="breed-name">${a.name}</div>
-    <div class="stickers">${stickersHtml}</div>
-  `;
-  board.appendChild(card);
+function setupWritePad(pad){
+  const canvas = pad.querySelector('canvas');
+  const clearBtn = pad.querySelector('.clear-btn');
+  const ctx = canvas.getContext('2d');
+  const ratio = window.devicePixelRatio || 1;
+  function sizeCanvas(){
+    const cssW = pad.clientWidth, cssH = pad.clientHeight;
+    canvas.width = Math.max(1, Math.floor(cssW * ratio));
+    canvas.height = Math.max(1, Math.floor(cssH * ratio));
+    ctx.setTransform(1,0,0,1,0,0);
+    ctx.scale(ratio, ratio);
+    ctx.lineWidth = 3; ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+    ctx.strokeStyle = '#2A2050';
+  }
+  sizeCanvas();
+  let drawing = false, lastX = 0, lastY = 0;
+  function getPos(e){ const r = canvas.getBoundingClientRect(); return [e.clientX-r.left, e.clientY-r.top]; }
+  function start(e){ drawing=true; [lastX,lastY]=getPos(e); canvas.setPointerCapture && canvas.setPointerCapture(e.pointerId); e.preventDefault(); }
+  function move(e){ if(!drawing) return; const [x,y]=getPos(e); ctx.beginPath(); ctx.moveTo(lastX,lastY); ctx.lineTo(x,y); ctx.stroke(); [lastX,lastY]=[x,y]; e.preventDefault(); }
+  function end(){ drawing=false; }
+  canvas.addEventListener('pointerdown', start);
+  canvas.addEventListener('pointermove', move);
+  canvas.addEventListener('pointerup', end);
+  canvas.addEventListener('pointercancel', end);
+  canvas.addEventListener('pointerleave', end);
+  clearBtn.addEventListener('click', ()=>ctx.clearRect(0,0,canvas.width,canvas.height));
+  window.addEventListener('resize', sizeCanvas);
+}
+document.addEventListener('DOMContentLoaded', ()=>{
+  document.querySelectorAll('.writepad').forEach(setupWritePad);
 });
+
 </script>
 </body>
 </html>
